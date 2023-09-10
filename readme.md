@@ -39,14 +39,15 @@ If you want to create a **Post action api**. Please write command as -
     php artisan make:api-action Api/Post
   ```
 This command will create 
-- an API PostController, 
+- an API PostController 
 - Action directory  
-  - Action classes, 
+  - Action classes
   - Helper class  
-  - Trait class
-- Action Request, 
-- Action Model  
-- Action Migration.
+  - Trait 
+- Form Request
+- Model  
+- Migration
+to perform a feature wise service fot your application.
 
 ![api-action-post.PNG](https://raw.githubusercontent.com/RabibHossain/images/main/api-action-post.PNG?token=GHSAT0AAAAAACC6LYYKRCSLCTZ5FAMW6J2WZH56IUA)
 
