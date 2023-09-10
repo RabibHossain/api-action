@@ -17,8 +17,8 @@ Add the provider to your `config/app.php` into `provider` section if using lower
   ```sh
   \Rabibgalib\ApiAction\ApiActionServiceProvider::class,
   ```
-If you face 419 (page expired) error or CORS or XSRF issue for a new project or have not fixed the issue,
-then update App/Http/Middleware/VerifyCsrfToken.php as -
+If you face `419 (page expired)` error or `CORS` or `XSRF` issue for a new project or have not fixed the issue,
+then update `App/Http/Middleware/VerifyCsrfToken.php` as -
   ```sh
     protected $except = [
         "*"
@@ -32,12 +32,21 @@ After the installation & configuration run the command as -
     php artisan make:api-action ACTION_NAME
   ```
 
-Example: If you want to create a Post action api. Please write command as -
+# Example 
+If you want to create a **Post action api**. Please write command as -
 
   ```sh
     php artisan make:api-action Api/Post
   ```
-This command will create an API PostController, Action directory with Action classes, Helper class & Trait class, Action Request, Action Model and Action Migration.
+This command will create 
+- an API PostController, 
+- Action directory  
+  - Action classes, 
+  - Helper class  
+  - Trait class
+- Action Request, 
+- Action Model  
+- Action Migration.
 
 ![api-action-post.PNG](https://raw.githubusercontent.com/RabibHossain/images/main/api-action-post.PNG?token=GHSAT0AAAAAACC6LYYKRCSLCTZ5FAMW6J2WZH56IUA)
 
@@ -56,7 +65,7 @@ Now put below codes inside `posts` Migration as -
   $table->string('title')->nullable();
   $table->string('description')->nullable();
    ```
-After set up the routes/web.php as -
+After migration command, set up the routes/web.php as -
   ```sh
 use App\Http\Controllers\Api\PostController;
 Route::get('posts', [PostController::class, 'index']);
