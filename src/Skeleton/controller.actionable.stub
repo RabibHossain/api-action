@@ -1,0 +1,112 @@
+<?php
+
+namespace $NAME_SPACE$;
+
+use App\Http\Controllers\Controller;
+use $FORM_REQUEST$;
+use $HELPER_SOURCE$;
+use $LIST_ACTION$;
+use $CREATE_ACTION$;
+use $UPDATE_ACTION$;
+use $FIND_ACTION$;
+use $DELETE_ACTION$;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+
+class $CLASS_NAME$Controller extends Controller
+{
+
+    public function __construct()
+    {
+        // If Needed...
+    }
+
+    /**
+     * Shows data of array in paginate
+     *
+     * @param $CLASS_NAME$Request $request
+     * @param $CLASS_NAME$Helper $helper
+     * @param List$CLASS_NAME$ $action
+     * @return JsonResponse
+     */
+    public function index($CLASS_NAME$Request $request, $CLASS_NAME$Helper $helper, List$CLASS_NAME$ $action): JsonResponse
+    {
+        $request_array = $helper->searchListParams($request);
+
+        return $action->handle($request_array, $helper->modelOf());
+    }
+
+    /**
+     * Creates a new request in database
+     *
+     * @param $CLASS_NAME$Request $request
+     * @param $CLASS_NAME$Helper $helper
+     * @param Create$CLASS_NAME$ $action
+     * @return JsonResponse
+     */
+    public function create($CLASS_NAME$Request $request, $CLASS_NAME$Helper $helper, Create$CLASS_NAME$ $action): JsonResponse
+    {
+        $model = $helper->modelOf();
+
+        return $action->handle($request, $model);
+    }
+
+    /**
+     * Updates specific data based on request
+     *
+     * @param $CLASS_NAME$Request $request
+     * @param $id
+     * @param $CLASS_NAME$Helper $helper
+     * @param Update$CLASS_NAME$ $action
+     * @return JsonResponse
+     */
+    public function update($CLASS_NAME$Request $request, $id, $CLASS_NAME$Helper $helper, Update$CLASS_NAME$ $action): JsonResponse
+    {
+        $instance = $helper->findInstance($id);
+        $model = $helper->modelOf();
+        if (!$instance instanceof $model) {
+            return $helper->idNotFound();
+        }
+
+        return $action->handle($request, $instance);
+    }
+
+    /**
+     * Finds a specific row of data
+     *
+     * @param $id
+     * @param $CLASS_NAME$Helper $helper
+     * @param Find$CLASS_NAME$ $action
+     * @return JsonResponse
+     */
+    public function find($id, $CLASS_NAME$Helper $helper, Find$CLASS_NAME$ $action): JsonResponse
+    {
+        $instance = $helper->findInstance($id);
+        $model = $helper->modelOf();
+        if (!$instance instanceof $model) {
+            return $helper->idNotFound();
+        }
+
+        return $action->handle($instance);
+    }
+
+    /**
+     * Deletes a specific item of data
+     *
+     * @param $id
+     * @param $CLASS_NAME$Helper $helper
+     * @param Delete$CLASS_NAME$ $action
+     * @return JsonResponse
+     */
+    public function delete($id, $CLASS_NAME$Helper $helper, Delete$CLASS_NAME$ $action): JsonResponse
+    {
+        $instance = $helper->findInstance($id);
+        $model = $helper->modelOf();
+        if (!$instance instanceof $model) {
+            return $helper->idNotFound();
+        }
+
+        return $action->handle($instance);
+    }
+
+}

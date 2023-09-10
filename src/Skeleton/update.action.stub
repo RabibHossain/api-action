@@ -1,0 +1,40 @@
+<?php
+
+namespace $NAME_SPACE$;
+
+use $TRAIT_RESPONSE$;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
+
+class Update$CLASS_NAME$
+{
+    use ApiResponse;
+
+    /**
+     * Requested fields are managed in Request.
+     * This handle function updates $CLASS_NAME$ requests if the instance found in DB
+     *
+     * @param $request
+     * @param $instance
+     * @param int $status
+     * @return JsonResponse
+     */
+    public function handle($request, $instance, int $status = 200): JsonResponse
+    {
+        try {
+            $instance->fill($request->all())->save();
+            $data = [
+                'status' => $status,
+                'id' => $instance->id ,
+                'message' => "$CLASS_NAME$ updated successfully.",
+            ];
+
+            return $this->successResponse($data, $data['message'], 200);
+        }  catch (\Exception $ex) {
+            Log::info("$CLASS_NAME$ update exception " . $ex->getMessage());
+
+            return $this->errorResponse("$CLASS_NAME$ update failed", 500);
+        }
+    }
+
+}

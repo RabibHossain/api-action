@@ -1,0 +1,25 @@
+<?php
+
+namespace $NAME_SPACE$;
+
+use $TRAIT_RESPONSE$;
+use Illuminate\Http\JsonResponse;
+
+class Find$CLASS_NAME$
+{
+    use ApiResponse;
+
+    /**
+     * Find $CLASS_NAME$ instance by request id from database.
+     *
+     * @param $instance
+     * @param int $status
+     * @return JsonResponse
+     */
+    public function handle($instance, int $status = 200): JsonResponse
+    {
+        $message = "$CLASS_NAME$ $instance->id found.";
+
+        return $this->successResponse($instance, $message, $status);
+    }
+}

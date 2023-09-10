@@ -1,0 +1,60 @@
+<?php
+
+namespace $NAME_SPACE$;
+
+use Illuminate\Http\JsonResponse;
+
+trait ApiResponse
+{
+
+    /**
+     * @param $data
+     * @param $message
+     * @param int $code
+     * @return JsonResponse
+     */
+    protected function successResponse($data, $message = null, int $code = 200): JsonResponse
+    {
+        return response()->json([
+            'resultCode' => $code,
+            'time' => date('Y-m-d H:i:s'),
+            'success' => [
+                'title' => 'Success',
+                'message' => $message,
+            ],
+            'data' => $data,
+
+        ], $code);
+    }
+
+    /**
+     * @param $message
+     * @param int $code
+     * @return JsonResponse
+     */
+    protected function errorResponse($message = null, int $code = 500): JsonResponse
+    {
+        return response()->json([
+            'resultCode' => $code,
+            'time' => date('Y-m-d H:i:s'),
+            'error' => [
+                'title' => 'Error',
+                'message' => $message,
+            ],
+        ], $code);
+    }
+
+    /**
+     * @param $data
+     * @return array
+     */
+    public function collectionToPaginate($data): array
+    {
+        return [
+            'totalItem' => $data->total(),
+            'totalPage' => $data->lastPage(),
+            'currentPage' => $data->currentPage(),
+            'data' => $data->toArray()['data'] ?? []
+        ];
+    }
+}

@@ -1,0 +1,38 @@
+<?php
+
+namespace $NAME_SPACE$;
+
+use $TRAIT_RESPONSE$;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
+
+class Create$CLASS_NAME$
+{
+    use ApiResponse;
+
+    /**
+     * Requested fields are managed in Request.
+     * This handle function inserts a new $CLASS_NAME$ data into Database.
+     *
+     * @param $request
+     * @param $model
+     * @return JsonResponse
+     */
+    public function handle($request, $model): JsonResponse
+    {
+        try {
+            $new_store = $model::create($request->all());
+            $data = [
+                'status' => 200,
+                'id' => $new_store->id,
+                'message' => "$CLASS_NAME$ created successfully.",
+            ];
+
+            return $this->successResponse($data, $data['message'], 200);
+        }  catch (\Exception $ex) {
+            Log::info("$CLASS_NAME$ insertion exception " . $ex->getMessage());
+
+            return $this->errorResponse("$CLASS_NAME$ insertion failed", 500);
+        }
+    }
+}

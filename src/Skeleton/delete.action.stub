@@ -1,0 +1,37 @@
+<?php
+
+namespace $NAME_SPACE$;
+
+use $TRAIT_RESPONSE$;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
+
+class Delete$CLASS_NAME$
+{
+    use ApiResponse;
+
+    /**
+     * Delete $CLASS_NAME$ instance by request id from database.
+     *
+     * @param $instance
+     * @param int $status
+     * @return JsonResponse
+     */
+    public function handle($instance, int $status = 200): JsonResponse
+    {
+        try {
+            $instance->delete();
+            $data = [
+                'status' => $status,
+                'id' => $instance->id ,
+                'message' => "$CLASS_NAME$ {$instance->id} deleted successfully.",
+            ];
+
+            return $this->successResponse($data, $data['message'], 200);
+        }  catch (\Exception $ex) {
+            Log::info("$CLASS_NAME$ delete exception " . $ex->getMessage());
+
+            return $this->errorResponse("$CLASS_NAME$ delete failed", 500);
+        }
+    }
+}

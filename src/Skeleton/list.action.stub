@@ -1,0 +1,40 @@
+<?php
+
+namespace $NAME_SPACE$;
+
+use $TRAIT_RESPONSE$;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
+
+class List$CLASS_NAME$
+{
+    use ApiResponse;
+
+    /**
+     * This handle function fetch data from database in paginate.
+     *
+     * @param $data_array
+     * @param $model
+     * @return JsonResponse
+     */
+    public function handle($data_array, $model): JsonResponse
+    {
+        try {
+            $contacts = $model::orderBy($data_array['order_column'], $data_array['order_type'])
+                ->paginate($data_array['paginated_items']);
+
+            if ($contacts->total() === 0) {
+                $message = "No $CLASS_NAME$ found!";
+            } else {
+                $message = "$CLASS_NAME$ found.";
+            }
+
+            return $this->successResponse($this->collectionToPaginate($contacts), $message, 200);
+
+        }  catch (\Exception $ex) {
+            Log::info("$CLASS_NAME$ search exception " . $ex->getMessage());
+
+            return $this->errorResponse("$CLASS_NAME$ searching failed", 500);
+        }
+    }
+}

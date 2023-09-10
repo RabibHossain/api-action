@@ -1,0 +1,21 @@
+{
+    "name": "rabibgalib/api-action",
+    "description": "This packages will help to create APIs with Controller, Request, Traits, Model, Migration, Action Classes, Helper Class.",
+    "type": "library",
+    "require": {
+        "php": "^7.4|^8.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Rabibgalib\\ApiAction\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Rabib Galib",
+            "email": "galib.rabib@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
