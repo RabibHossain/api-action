@@ -26,7 +26,6 @@ trait SourcePathTrait
     }
 
     /**
-     * Return the Singular Capitalize Name
      * @param $name
      * @return string
      */
@@ -52,8 +51,6 @@ trait SourcePathTrait
     }
 
     /**
-     * Get the full path of generate class
-     *
      * @param $name
      * @param $type
      * @return string|null

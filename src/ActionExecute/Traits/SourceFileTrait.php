@@ -18,9 +18,6 @@ trait SourceFileTrait
     }
 
     /**
-     **
-     * Map the stub variables present in stub to its value
-     *
      * @param $name
      * @param $type
      * @return array
@@ -91,7 +88,6 @@ trait SourceFileTrait
     }
 
     /**
-     * Return the stub file path
      * @param $type
      * @return string|null
      */
@@ -137,8 +133,6 @@ trait SourceFileTrait
     }
 
     /**
-     * Replace the stub variables(key) with the desire value
-     *
      * @param $stub
      * @param array $stubVariables
      * @return array|false|string|string[]
@@ -156,8 +150,6 @@ trait SourceFileTrait
     }
 
     /**
-     * Get the stub path and the stub variables
-     *
      * @param $name
      * @param $type
      * @return string|array|bool

@@ -29,7 +29,7 @@ then update `App/Http/Middleware/VerifyCsrfToken.php` as -
 
 After the installation & configuration run the command as -
   ```sh
-    php artisan make:api-action ACTION_NAME
+    php artisan make:api-action ActionName
   ```
 
 # Example 
@@ -46,8 +46,8 @@ This command will create
   - Trait 
 - Form Request
 - Model  
-- Migration
-to perform a feature wise service fot your application.
+- Migration <br>
+to perform a feature wise service for your application.
 
 ![api-action-post.PNG](https://raw.githubusercontent.com/RabibHossain/images/main/api-action-post.PNG?token=GHSAT0AAAAAACC6LYYKRCSLCTZ5FAMW6J2WZH56IUA)
 
