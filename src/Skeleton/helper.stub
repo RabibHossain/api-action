@@ -3,46 +3,13 @@
 namespace $NAME_SPACE$;
 
 use $MODEL_DIR$;
-use $TRAIT_RESPONSE$;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Log;
+use $BASE_HELPER$;
 
-class $HELPER_NAME$Helper
+class $HELPER_NAME$Helper extends BaseHelper
 {
-    use ApiResponse;
-
-    protected $MODEL_NAME$ $table;
-    private const NO_DATA_FOUND = "No data found!";
-
-    public function __construct($MODEL_NAME$ $$MODEL_NAME_FIRST$)
+    public function __construct($MODEL_NAME$ $model)
     {
-        $this->table = $$MODEL_NAME_FIRST$;
-    }
-
-    /**
-     * @return $MODEL_NAME$
-     */
-    public function modelOf(): $MODEL_NAME$
-    {
-        return $this->table;
-    }
-
-    /**
-     * @param int $id
-     * @return mixed
-     */
-    public function findInstance(int $id = 0): mixed
-    {
-        return $this->table::find($id);
-    }
-
-    /**
-     * @return JsonResponse
-     */
-    public function idNotFound(): JsonResponse
-    {
-        Log::info(self::NO_DATA_FOUND);
-        return $this->errorResponse(self::NO_DATA_FOUND, 404);
+        parent::__construct($model);
     }
 
     /**

@@ -70,6 +70,9 @@ trait SourcePathTrait
             case 'trait':
                 $file_path = base_path("App\\{$app_name}Packages\\Traits") . '\\ApiResponse.php';
                 break;
+            case 'baseHelper':
+                $file_path = base_path("App\\{$app_name}Packages\\BaseHelper") . '\\BaseHelper.php';
+                break;
             case 'helper':
                 $file_path = base_path("App\\{$app_name}Packages\\{$this->getSingularClassName($arr[$count-1])}\\Helpers") .'\\' .$this->getSingularClassName($arr[$count-1]) . 'Helper.php';
                 break;

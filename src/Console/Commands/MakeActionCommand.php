@@ -50,6 +50,7 @@ class MakeActionCommand extends Command
         $this->releaseClasses($execute_command, $command_name, 'controller');
         $this->releaseClasses($execute_command, $command_name, 'request');
         $this->releaseClasses($execute_command, $command_name, 'trait');
+        $this->releaseClasses($execute_command, $command_name, 'baseHelper');
         $this->releaseClasses($execute_command, $command_name, 'helper');
         $this->releaseClasses($execute_command, $command_name, 'model');
         $this->releaseClasses($execute_command, $command_name, 'migration');

@@ -1,0 +1,46 @@
+<?php
+
+namespace $NAME_SPACE$;
+
+use $TRAIT_RESPONSE$;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
+
+class BaseHelper
+{
+    use ApiResponse;
+
+    private $model;
+    private const NO_DATA_FOUND = "No data found!";
+
+    public function __construct($model)
+    {
+        $this->model = $model;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function modelOf(): mixed
+    {
+        return $this->model;
+    }
+
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function findInstance(int $id = 0): mixed
+    {
+        return $this->model::find($id);
+    }
+
+    /**
+     * @return JsonResponse
+     */
+    public function idNotFound(): JsonResponse
+    {
+        Log::info(self::NO_DATA_FOUND);
+        return $this->errorResponse(self::NO_DATA_FOUND, 404);
+    }
+}

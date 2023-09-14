@@ -3,14 +3,14 @@
             app
             └── ApiActionPackages
             │   └── {{ActionName}}   
-            │   │    └── Actions
-            │   │    │   ├── CreatePost
-            │   │    │   ├── DeletePost
-            │   │    │   ├── FindPost
-            │   │    │   ├── ListPost
-            │   │    │   └── UpdatePost
-            │   │    └── Helpers
-            │   │        └── {{ActionName}}Helper
+            │   │   └── Actions
+            │   │   │   ├── CreatePost
+            │   │   │   ├── DeletePost
+            │   │   │   ├── FindPost
+            │   │   │   ├── ListPost
+            │   │   │   └── UpdatePost
+            │   │   └── Helpers
+            │   │       └── {{ActionName}}Helper
             │   └── BaseHelper
             │   │   └── BaseHelper
             │   └── Traits

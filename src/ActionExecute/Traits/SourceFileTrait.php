@@ -9,9 +9,9 @@ trait SourceFileTrait
 
     /**
      * @param $app_name
-     * @return array|string|string[]|null
+     * @return ?string
      */
-    public function removePunctuation($app_name): array|string|null
+    public function removePunctuation($app_name): ?string
     {
         $name = preg_replace("/(?![.=$'€%-])\p{P}/u", "", $app_name);
         return str_replace(' ', '', $name);
@@ -44,12 +44,16 @@ trait SourceFileTrait
             case 'trait':
                 $namespace = "App\\{$app_name}Packages\\Traits";
                 break;
+            case 'baseHelper':
+                $namespace = "App\\{$app_name}Packages\\BaseHelper";
+                $trait_response = "App\\{$app_name}Packages\\Traits\\ApiResponse";
+                break;
             case 'helper':
                 $namespace = "App\\{$app_name}Packages\\{$this->getSingularClassName($arr[$count-1])}\\Helpers";
-                $trait_response = "App\\{$app_name}Packages\\Traits\\ApiResponse";
                 $helper_name = $this->getSingularClassName($arr[$count-1]);
                 $model_name_first = lcfirst($this->getSingularClassName($arr[$count-1]));
                 $model_dir = "App\\Models\\" . $this->getSingularClassName($arr[$count-1]);
+                $base_helper = "App\\{$app_name}Packages\\BaseHelper\\BaseHelper";
                 break;
             case 'model':
                 $namespace = "App\\Models";
@@ -73,6 +77,7 @@ trait SourceFileTrait
             'CLASS_NAME'        => $this->getSingularClassName($arr[$count-1]),
             'TRAIT_RESPONSE'    => $trait_response ?? null,
             'FORM_REQUEST'      => $form_request ?? null,
+            'BASE_HELPER'       => $base_helper ?? null,
             'HELPER_SOURCE'     => $helper_class ?? null,
             'CREATE_ACTION'     => $create_action ?? null,
             'UPDATE_ACTION'     => $update_action ?? null,
@@ -89,7 +94,7 @@ trait SourceFileTrait
 
     /**
      * @param $type
-     * @return string|null
+     * @return ?string
      */
     public function getStubPath($type): ?string
     {
@@ -102,6 +107,9 @@ trait SourceFileTrait
                 break;
             case 'trait':
                 $path = __DIR__ . '/../../Skeleton/trait.api.response.stub';
+                break;
+            case 'baseHelper':
+                $path = __DIR__ . '/../../Skeleton/baseHelper.stub';
                 break;
             case 'helper':
                 $path = __DIR__ . '/../../Skeleton/helper.stub';
@@ -135,9 +143,9 @@ trait SourceFileTrait
     /**
      * @param $stub
      * @param array $stubVariables
-     * @return array|false|string|string[]
+     * @return ?string
      */
-    public function getStubContents($stub , array $stubVariables = []): array|bool|string
+    public function getStubContents($stub , array $stubVariables = []): ?string
     {
         $contents = file_get_contents($stub);
 
@@ -152,9 +160,9 @@ trait SourceFileTrait
     /**
      * @param $name
      * @param $type
-     * @return string|array|bool
+     * @return ?string
      */
-    public function getSourceFile($name, $type): string|array|bool
+    public function getSourceFile($name, $type): ?string
     {
         return $this->getStubContents($this->getStubPath($type), $this->getStubActionVariables($name, $type));
     }
