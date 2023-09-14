@@ -77,7 +77,7 @@ trait SourcePathTrait
                 $file_path = base_path("App\\{$app_name}Packages\\{$this->getSingularClassName($arr[$count-1])}\\Helpers") .'\\' .$this->getSingularClassName($arr[$count-1]) . 'Helper.php';
                 break;
             case 'model':
-                $file_path = base_path("App\\Models") .'\\' .$this->getSingularClassName($arr[$count-1]) . '.php';
+                $file_path = $this->modelDirectory() . "\\" .$this->getSingularClassName($arr[$count-1]) . ".php";
                 break;
             case 'migration':
                 $prefix = date('Y_m_d_hms', strtotime(NOW()));

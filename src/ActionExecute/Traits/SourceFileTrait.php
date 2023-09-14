@@ -6,6 +6,21 @@ use Illuminate\Support\Str;
 
 trait SourceFileTrait
 {
+    /**
+     * @return ?string
+     */
+    public function phpVersion(): ?string
+    {
+        return phpversion();
+    }
+
+    /**
+     * @return string
+     */
+    public function modelDirectory(): string
+    {
+        return ($this->phpVersion() >= 8) ? "App\\Models" : "App";
+    }
 
     /**
      * @param $app_name
@@ -52,14 +67,17 @@ trait SourceFileTrait
                 $namespace = "App\\{$app_name}Packages\\{$this->getSingularClassName($arr[$count-1])}\\Helpers";
                 $helper_name = $this->getSingularClassName($arr[$count-1]);
                 $model_name_first = lcfirst($this->getSingularClassName($arr[$count-1]));
-                $model_dir = "App\\Models\\" . $this->getSingularClassName($arr[$count-1]);
+                $model_dir = $this->modelDirectory() . "\\" . $this->getSingularClassName($arr[$count-1]);
                 $base_helper = "App\\{$app_name}Packages\\BaseHelper\\BaseHelper";
                 break;
             case 'model':
-                $namespace = "App\\Models";
+                $namespace = $this->modelDirectory();
+                $has_factory = ($this->phpVersion()) ? "use HasFactory;" : null;
+                $extend_factory = ($this->phpVersion() >= 8) ? "use Illuminate\Database\Eloquent\Factories\HasFactory;" : null;
                 break;
             case 'migration':
                 $make_plural = Str::plural($this->getSingularClassName($arr[$count-1]));
+                $migration_class = ($this->phpVersion() >= 8) ? "new class" : "Create{$make_plural}Table";
                 $table_name = strtolower(preg_replace('/(.)([A-Z])/', '$1_$2', $make_plural));
                 break;
             case 'action-create':
@@ -88,6 +106,9 @@ trait SourceFileTrait
             'MODEL_NAME'        => $helper_name ?? null,
             'MODEL_NAME_FIRST'  => $model_name_first ?? null,
             'MODEL_DIR'         => $model_dir ?? null,
+            'HAS_FACTORY'       => $has_factory ?? null,
+            'EXTEND_FACTORY'    => $extend_factory ?? null,
+            'MIGRATION_CLASS'   => $migration_class ?? null,
             'TABLE_NAME'        => $table_name ?? null,
         ];
     }

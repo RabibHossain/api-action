@@ -2,10 +2,10 @@
 
 namespace $NAME_SPACE$;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+$EXTEND_FACTORY$
 use Illuminate\Database\Eloquent\Model;
 
 class $CLASS_NAME$ extends Model
 {
-    use HasFactory;
+    $HAS_FACTORY$
 }
