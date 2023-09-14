@@ -19,18 +19,18 @@ class BaseHelper
     }
 
     /**
-     * @return mixed
+     * @return ?object
      */
-    public function modelOf(): mixed
+    public function modelOf(): ?object
     {
         return $this->model;
     }
 
     /**
      * @param int $id
-     * @return mixed
+     * @return ?object
      */
-    public function findInstance(int $id = 0): mixed
+    public function findInstance(int $id = 0): ?object
     {
         return $this->model::find($id);
     }
