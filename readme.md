@@ -1,5 +1,11 @@
+<p align="center">
+<a href="https://packagist.org/packages/rabibgalib/api-action"><img src="https://img.shields.io/packagist/dt/rabibgalib/api-action" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/rabibgalib/api-action"><img src="https://img.shields.io/packagist/v/rabibgalib/api-action" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/rabibgalib/api-action"><img src="https://img.shields.io/packagist/l/rabibgalib/api-action" alt="License"></a>
+</p>
+
 ### Api Action Structure
-            
+
             app
             └── ApiActionPackages
             │   └── {{ActionName}}   
@@ -25,13 +31,8 @@
             └── database
                 └── migrations
                     └── create_{{ActionName}}_table
-                 
+
           
-<p align="center">
-<a href="https://packagist.org/packages/rabibgalib/api-action"><img src="https://img.shields.io/packagist/dt/rabibgalib/api-action" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/rabibgalib/api-action"><img src="https://img.shields.io/packagist/v/rabibgalib/api-action" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/rabibgalib/api-action"><img src="https://img.shields.io/packagist/l/rabibgalib/api-action" alt="License"></a>
-</p>
 
 # api-action
 
