@@ -72,7 +72,7 @@ trait SourceFileTrait
                 break;
             case 'model':
                 $namespace = $this->modelDirectory();
-                $has_factory = ($this->phpVersion()) ? "use HasFactory;" : null;
+                $has_factory = ($this->phpVersion() >= 8) ? "use HasFactory;" : null;
                 $extend_factory = ($this->phpVersion() >= 8) ? "use Illuminate\Database\Eloquent\Factories\HasFactory;" : null;
                 break;
             case 'migration':
