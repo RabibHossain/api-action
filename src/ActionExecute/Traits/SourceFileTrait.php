@@ -77,7 +77,7 @@ trait SourceFileTrait
                 break;
             case 'migration':
                 $make_plural = Str::plural($this->getSingularClassName($arr[$count-1]));
-                $migration_class = ($this->phpVersion() >= 8) ? "new class" : "Create{$make_plural}Table";
+                $migration_class = ($this->phpVersion() >= 8) ? "return new class" : "class Create{$make_plural}Table";
                 $table_name = strtolower(preg_replace('/(.)([A-Z])/', '$1_$2', $make_plural));
                 break;
             case 'action-create':
