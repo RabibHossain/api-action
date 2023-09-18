@@ -10,11 +10,11 @@
             └── ApiActionPackages
             │   └── {{ActionName}}   
             │   │   └── Actions
-            │   │   │   ├── CreatePost
-            │   │   │   ├── DeletePost
-            │   │   │   ├── FindPost
-            │   │   │   ├── ListPost
-            │   │   │   └── UpdatePost
+            │   │   │   ├── Create{{ActionName}}
+            │   │   │   ├── Delete{{ActionName}}
+            │   │   │   ├── Find{{ActionName}}
+            │   │   │   ├── List{{ActionName}}
+            │   │   │   └── Update{{ActionName}}
             │   │   └── Helpers
             │   │       └── {{ActionName}}Helper
             │   └── BaseHelper
@@ -72,7 +72,7 @@ This command will create
 - an API PostController 
 - Action directory  
   - Action classes
-  - Helper class  
+  - Helper classes  
   - Trait 
 - Form Request
 - Model  

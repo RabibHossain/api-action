@@ -44,7 +44,7 @@ trait SourceFileTrait
         $app_name = "ApiAction";
         switch ($type) {
             case 'controller':
-                $namespace = "App\\Http\\Controllers{$this->breakData($arr)}";
+                $namespace = "App\\Http\\Controllers{$this->breakData($arr, 'namespace')}";
                 $form_request = "App\\Http\\Requests\\{$this->getSingularClassName($arr[$count-1])}Request";
                 $helper_class = "App\\{$app_name}Packages\\{$this->getSingularClassName($arr[$count-1])}\\Helpers\\{$this->getSingularClassName($arr[$count-1])}Helper";
                 $create_action = "App\\{$app_name}Packages\\{$this->getSingularClassName($arr[$count-1])}\\Actions\\Create{$this->getSingularClassName($arr[$count-1])}";
